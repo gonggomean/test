@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style>
+        .user-details .input-box select {
+            height: 45px;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .user-details .input-box textarea {
+            height: 100px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+            resize: none;
+        }
+        .error-message {
+          display: none;
+          color: red;
+          font-size: 14px;
+      }
+      
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            Form Registrasi
+        </div>
+        <div class="content">
+            <form id="registrationForm">
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Nama Karyawan</span>
+                        <input type="text" id="name" name="name" placeholder="Masukkan Nama" required>
+                        <div id="nameError" class="error-message">Nama tidak boleh kosong!</div>
+                    </div>
+                    <div class="input-box">
+                        <span class="details">Email Karyawan</span>
+                        <input type="email" id="email" name="email" placeholder="Masukkan Email" required>
+                        <div id="emailError" class="error-message">Format email tidak valid!</div>
+                    </div>
+                </div>
+
+                <div class="user-details">
+                    <div class="input-box">
+                        <span class="details">Nomor Telepon</span>
+                        <input type="text" id="phone" name="phone" placeholder="Masukkan Nomor Telepon" required>
+                        <div id="phoneError" class="error-message">Nomor telepon tidak boleh kosong!</div>
+                    </div>
+                </div>
+
+                <div class="button">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+      document.getElementById('registrationForm').addEventListener('submit', function(event) {
+        var nameInput = document.getElementById('name');
+        var emailInput = document.getElementById('email');
+        var phoneInput = document.getElementById('phone');
+        var isValid = true;
+    
+        if (nameInput.value === '') {
+          document.getElementById('nameError').style.display = 'block';
+          nameInput.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          document.getElementById('nameError').style.display = 'none';
+          nameInput.parentElement.classList.remove('error');
+        }
+    
+        if (emailInput.value === '' || !isValidEmail(emailInput.value)) {
+          document.getElementById('emailError').style.display = 'block';
+          emailInput.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          document.getElementById('emailError').style.display = 'none';
+          emailInput.parentElement.classList.remove('error');
+        }
+    
+        if (phoneInput.value === '') {
+          document.getElementById('phoneError').style.display = 'block';
+          phoneInput.parentElement.classList.add('error');
+          isValid = false;
+        } else {
+          document.getElementById('phoneError').style.display = 'none';
+          phoneInput.parentElement.classList.remove('error');
+        }
+    
+        if (!isValid) {
+          event.preventDefault(); 
+        }
+      });
+    
+      
+      function isValidEmail(email) {
+        var emailRegex = /\S+@\S+\.\S+/;
+        return emailRegex.test(email);
+      }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
